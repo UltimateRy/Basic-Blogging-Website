@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -14,5 +14,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
+            $a = new User;
+            $a->name = "JohnDoe";
+            $a->email = "JohnDoe@gmail.com";
+            $a->password = "JohnDoe";
+            $a->save();
+
     }
 }
