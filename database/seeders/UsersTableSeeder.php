@@ -21,7 +21,5 @@ class UsersTableSeeder extends Seeder
             $a->save();
 
             $users = User::factory()->count(10)->create();
-
-
     }
 }

@@ -19,7 +19,7 @@ class PostsTableSeeder extends Seeder
             $a->user_id = 1; //first user
             $a->save();
     
-            //$users = User::factory()->count(10)->create();
-        
+            $posts = Post::factory()->count(10)->create();
+
     }
 }
