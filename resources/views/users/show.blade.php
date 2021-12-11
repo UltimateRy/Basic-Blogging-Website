@@ -13,7 +13,7 @@
 <h1> {{$profile->username}}'s Posts:</h1>
 
 <ul>
-    @foreach ($profile->posts as $post)
+    @foreach ($posts as $post)
         <li><h3>Post ID: <a href="{{route('posts.show', [ 'id' => $post->id ]) }}">{{$post->id}}</a></h3></li>
         <li><h4>Post Contents: </h4></li>
         <li>{{$post->contents}}</li>
@@ -21,6 +21,7 @@
         <br>
         <br>
     @endforeach
+    {{$posts->links() }}
 </ul>
 
 @endsection

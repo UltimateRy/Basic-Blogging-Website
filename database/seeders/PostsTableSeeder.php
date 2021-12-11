@@ -15,6 +15,7 @@ class PostsTableSeeder extends Seeder
     {
         //
             $a = new Post;
+            $a->title = "New Post!";
             $a->contents = "This is the first post on the site.";
             $a->user_id = 1; //first user
             $a->save();

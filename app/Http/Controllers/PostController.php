@@ -19,7 +19,9 @@ class PostController extends Controller
         //
 
         $posts = Post::all();
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', [
+            'posts' => $posts
+        ]);
 
     }
 
@@ -31,6 +33,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('posts.create');
     }
 
     /**
@@ -57,7 +60,9 @@ class PostController extends Controller
          $post = Post::findOrFail($id);
          // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
   
-          return view('posts.show', ['post' => $post, 'comments' => $post->comments()]);
+         return view('posts.show', [
+              'post' => $post, 'comments' => $post->comments()
+         ]);
     }
 
     /**

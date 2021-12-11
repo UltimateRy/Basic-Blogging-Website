@@ -19,7 +19,10 @@ class ProfileController extends Controller
     {
         //
         $users = User::all();
-        return view('users.index', ['users' => $users]);
+        //dd($users);
+        return view('users.index', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -55,7 +58,9 @@ class ProfileController extends Controller
         $user = User::findOrFail($id);
        // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
 
-        return view('users.show', ['profile' => $user, 'posts' => $user->posts()]);
+        return view('users.show', [
+            'profile' => $user, 'posts' => $user->posts()->paginate(2)
+        ]);
     }
 
     /**
