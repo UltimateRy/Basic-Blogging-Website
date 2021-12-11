@@ -33,13 +33,13 @@ class FriendsTableSeeder extends Seeder
         User::all()->each(function ($user) use ($users) { 
 
 
-            $random = array(random(rand(1, 3))->except($user->id));
-            $users = array_diff($users, $random);
+            //$random = array(random(rand(1, 3))->except($user->id));
+            //$users = array_diff($users, $random);
 
 
             $user->friends()->attach(
-               // $users->random(rand(1, 3))->except($user->id)->pluck('id')->toArray()  //A user is friends with any random 3 users except themself
-                $random->pluck('id')->toArray()
+                $users->random(rand(1, 3))->except($user->id)->pluck('id')->toArray()  //A user is friends with any random 3 users except themself
+               // $random->pluck('id')->toArray()
 
             ); 
         });
