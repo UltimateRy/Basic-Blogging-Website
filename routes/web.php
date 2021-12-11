@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +22,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+//Route::get('profile/{username?}', function($user = null){
+//    return view('profile', ['username'=>$user]);
+//});
+
+Route::get('/profile/{id?}', [ProfileController::class, 'show']);
 
 require __DIR__.'/auth.php';
