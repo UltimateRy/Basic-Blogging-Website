@@ -1,6 +1,6 @@
 @extends('layouts.example')
 
-@section('title', 'All Posts')
+@section('title', 'Create New Post')
 
 @section('content')
 
@@ -8,5 +8,8 @@
     @csrf
     <p>Title: <input type="text" name="title"> </p>
     <p>Contents: <input type="text" name="contents"> </p>
+    
+    <input type="submit" value="Submit">
+    <a href="{{route('posts.index') }}">Cancel</a>
 
 @endsection
