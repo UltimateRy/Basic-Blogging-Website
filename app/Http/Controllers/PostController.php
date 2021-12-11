@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 
-
-class ProfileController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,10 +49,11 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
-        $user = User::findOrFail($id);
-       // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
-
-        return view('users.show', ['profile' => $user, 'posts' => $user->posts()]);
+         //
+         $post = Post::findOrFail($id);
+         // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
+  
+          return view('posts.show', ['post' => $post, 'comments' => $post->comments()]);
     }
 
     /**

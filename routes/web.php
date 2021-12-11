@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +30,8 @@ Route::get('/dashboard', function () {
 //});
 
 Route::get('/profile/{id?}', [ProfileController::class, 'show']);
+
+Route::get('/post/{id?}', [PostController::class, 'show']);
+
 
 require __DIR__.'/auth.php';
