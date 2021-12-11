@@ -7,7 +7,7 @@
 <ul>
     <li>Post ID: {{$post->id}} </li>
     <li>Contents: {{$post->contents}} </li>
-    <li>Post made on: {{$post->created_on}} </li>
+    <li>Post made on: {{$post->created_at}} </li>
 <ul>
 
 <h1> Post ID: {{$post->id}}'s Comments:</h1>

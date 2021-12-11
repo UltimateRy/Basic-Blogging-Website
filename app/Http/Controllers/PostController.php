@@ -45,15 +45,23 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request['title']);
+        //dd($request['title']);
 
         $validatedData = $request->validate([
-
             'title' => 'required|max:255',
             'contents' => 'required|max:255',
         ]);
 
+        //return "Passed Validation";
 
+        $a = new Post;
+        $a->title = $validatedData['title'];
+        $a->contents = $validatedData['contents'];
+        $a->user_id = 1;
+        $a->save();
+
+        session()->flash('message', 'Post Successfully Created.');
+        return redirect()->route('posts.index');
     }
 
     /**
