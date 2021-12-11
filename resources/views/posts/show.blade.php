@@ -15,7 +15,7 @@
 <ul>
     @foreach ($post->comments as $comment)
         <li><h3>Comment ID: {{$comment->id}}</h3></li>
-        <li><h3>Made by user: <a href="/profiles/{{$post->user_id}}">{{$comment->user_id}}</a></h3></li>
+        <li><h3>Made by user: <a href="{{route('profiles.show', [ 'id' => $comment->user_id ]) }}">{{$comment->user_id}}</a></h3></li>
         <li><h4>Comment Contents: </h4></li>
         <li>{{$comment->contents}}</li>
         <br>

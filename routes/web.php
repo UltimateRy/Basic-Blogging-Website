@@ -29,11 +29,15 @@ Route::get('/dashboard', function () {
 //    return view('profile', ['username'=>$user]);
 //});
 
-Route::get('/profiles', [ProfileController::class, 'index']);
-Route::get('/profiles/{id}', [ProfileController::class, 'show']);
+Route::get('/profiles', [ProfileController::class, 'index'])
+    ->name('profiles.index');
+Route::get('/profiles/{id}', [ProfileController::class, 'show'])
+    ->name('profiles.show');
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{id}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index'])
+    ->name('posts.index');
+Route::get('/posts/{id}', [PostController::class, 'show'])
+    ->name('posts.show');
 
 
 require __DIR__.'/auth.php';
