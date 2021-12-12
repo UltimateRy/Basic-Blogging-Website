@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+use App\Models\Post;
+use Auth;
+
 class DashboardController extends Controller
 {
     /**
@@ -14,6 +18,19 @@ class DashboardController extends Controller
     public function index()
     {
         //
+
+        
+
+        $friends_posts = Post::whereIn('user_id', Auth::user()->friends()->pluck('id'))->get();
+
+        //$friends_posts = Post::with('user')->get();
+
+        $friends = Auth::user()->friends();
+
+
+        return view('dashboard', [
+          'friends_posts' => $friends_posts, 'friends' => $friends
+        ]);
     }
 
     /**
