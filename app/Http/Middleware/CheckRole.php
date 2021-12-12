@@ -16,6 +16,10 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+    
+        if(\Auth::user()->isAdmin())
+            return $next($request);
+        else
+            return response('Access denied');
     }
 }

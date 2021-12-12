@@ -27,6 +27,18 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, "friend_users", 'user_id', 'friend_id');
     }
 
+    public function isAdmin()
+    {
+        if($this->role === 'Admin')
+        { 
+            return true; 
+        } 
+        else 
+        { 
+            return false; 
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -32,19 +32,19 @@ Route::get('/dashboard', function () {
 //PROFILES ROUTES
 
 Route::get('/profiles', [ProfileController::class, 'index'])
-    ->name('profiles.index')->middleware('auth');;
+    ->name('profiles.index')->middleware(['auth', 'role']);
 Route::get('/profiles/{id}', [ProfileController::class, 'show'])
-    ->name('profiles.show')->middleware('auth');;
+    ->name('profiles.show')->middleware('auth');
 
 //POSTS ROUTES
 
 Route::get('/posts', [PostController::class, 'index'])
-    ->name('posts.index')->middleware('auth');
+    ->name('posts.index')->middleware(['auth', 'role']);
 Route::get('/posts/create', [PostController::class, 'create'])
-    ->name('posts.create')->middleware('auth');;
+    ->name('posts.create')->middleware('auth');
 Route::post('/posts', [PostController::class, 'store'])
-    ->name('posts.store')->middleware('auth');;
+    ->name('posts.store')->middleware('auth');
 Route::get('/posts/{id}', [PostController::class, 'show'])
-    ->name('posts.show')->middleware('auth');;
+    ->name('posts.show')->middleware('auth');
 
 require __DIR__.'/auth.php';
