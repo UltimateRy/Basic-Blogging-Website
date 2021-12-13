@@ -10,12 +10,14 @@
     <li>Post made on: {{$post->created_at}} </li>
 <ul>
 
+@can('update', $post)
 <form method="POST"
     action="{{ route('posts.destroy', ['id' => $post->id]) }}">
     @csrf
     @method('DELETE')
     <button type="submit">Delete</button>
 </form>
+@endcan
 
 <h1> Post ID: {{$post->id}}'s Comments:</h1>
 

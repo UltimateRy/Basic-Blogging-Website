@@ -23,15 +23,13 @@ class PostPolicy
         //
     }
 
-    /*
     public function before(User $user, $ability)
     {
-        if ($user->isAdmin()) {
-            return false;
+      if ($user->isAdmin()) {
+            return true;
         }
     }
-    */
-
+    
     public function update(User $user, Post $post)
     {
         return ($user->id === $post->user_id);
@@ -39,8 +37,8 @@ class PostPolicy
 
     public function delete(User $user, Post $post)
     {
-        return ($user->id === $post->user_id);
+        return ($user->id === $post->user_id)
+                ? Response::allow()
+                : Response::deny('You do not own this post.');
     }
-
-
 }

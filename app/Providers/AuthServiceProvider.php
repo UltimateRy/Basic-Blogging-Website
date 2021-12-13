@@ -19,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
 
-       // Post::class => PostPolicy::class,
+        Post::class => PostPolicy::class,
 
     ];
 
@@ -31,12 +31,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        
-        
-        Gate::define('delete-post', function (User $user, Post $post) {
-            return $user->id === $post->user_id;
-        });
-
-        //Gate::define('delete-post', [PostPolicy::class, 'delete']);
+        Gate::define('delete-post', [PostPolicy::class, 'delete']);
     }
 }
