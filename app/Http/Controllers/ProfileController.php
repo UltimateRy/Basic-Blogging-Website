@@ -25,6 +25,12 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function apiIndex() {
+        $users = User::all();
+        return $users;
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
