@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
 use App\Models\Comment;
 
@@ -113,12 +113,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $postForDeletion = Post::findOrFail($id);
 
-        //session()->flash('message', 'Post was deleted.');
-        return redirect()->route('posts.index')->with('message', 'Post was deleted.');
-
+        if (! Gate::allows('delete-post', $postForDeletion)) {
+            return response('Access denied : You cannot delete this post');
+        }
+        
+        return response('Access approved : You can delete this post');
+        
+        //$postForDeletion->delete();
+        //return redirect()->route('posts.index')->with('message', 'Post was deleted.');
     }
 }

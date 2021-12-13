@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Post extends Model
 {
@@ -19,4 +20,11 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    
+    public function ownedBy($userId = null)
+    {
+         $userId = $userId ?: auth()->id();
+         return $this->user_id === $userId;
+    }
+    
 }

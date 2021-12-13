@@ -10,6 +10,13 @@
     <li>Post made on: {{$post->created_at}} </li>
 <ul>
 
+<form method="POST"
+    action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Delete</button>
+</form>
+
 <h1> Post ID: {{$post->id}}'s Comments:</h1>
 
 <ul>

@@ -18,11 +18,17 @@ class CheckIfOwns
     {
         //NOT TESTED
 
-        if(\Auth::user()->isAdmin())
-            return $next($request);
-        elseif(\Auth::user()->posts()->contains('id', $request->id)
-            return $next($request);
+        //if(\Auth::user()->isAdmin())
+        //    return response('You are an admin');
+            //return $next($request);
+        
+       // else
+       if($request->user_id !== \Auth::user()->id)
+            //return $next($request);
+
+            return response('Access denied : You are not an admin or this is not your post');
+
         else
-            return response('Access denied');
+            return response('Access approved : You own this post');    
     }
 }
