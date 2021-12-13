@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         
 
-        $friends_posts = Post::whereIn('user_id', Auth::user()->friends()->pluck('id'))->get();
+        $friends_posts = Post::whereIn('user_id', Auth::user()->friends()->pluck('id'))->paginate(1);
 
         //$friends_posts = Post::with('user')->get();
 
