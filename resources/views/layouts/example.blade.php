@@ -10,8 +10,6 @@
     <title>Example App - @yield('title')</title>
 </head>
 <body>
-
-
     @if ($errors->any())
         <div>
             Errors:
@@ -22,8 +20,6 @@
             </ul>
         </div>
     @endif
-
-
     <div>
         @yield('content')
     </div>

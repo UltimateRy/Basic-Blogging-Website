@@ -17,11 +17,17 @@
                     </x-nav-link>
                 </div>
 
-                @can('update', $post)
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profiles.index')" :active="request()->routeIs('profiles.index')">
+                        {{ __('Manage Users') }}
+                    </x-nav-link>
+                </div>
 
-                
-                @endcan
-
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                        {{ __('Manage Posts') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
