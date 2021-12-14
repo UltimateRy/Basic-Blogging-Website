@@ -69,6 +69,8 @@ class ProfileController extends Controller
         $u->role = $request['role'];
         $u->save();
 
+        session()->flash('message', 'User Successfully Created.');
+
         return $u;
     }
 

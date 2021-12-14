@@ -11,6 +11,7 @@
 <ul>
 
 @can('update', $post)
+
 <form method="POST"
     action="{{ route('posts.destroy', ['id' => $post->id]) }}">
     @csrf

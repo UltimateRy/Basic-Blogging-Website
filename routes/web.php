@@ -38,6 +38,7 @@ Route::get('/profiles', [ProfileController::class, 'index'])
 Route::get('/profiles/{id}', [ProfileController::class, 'show'])
     ->name('profiles.show')->middleware('auth');
 
+
 //POSTS ROUTES
 
 Route::get('/posts', [PostController::class, 'index'])

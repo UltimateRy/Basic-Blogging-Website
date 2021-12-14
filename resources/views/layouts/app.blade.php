@@ -30,13 +30,19 @@
             <!-- Page Content -->
             <main>
                 @if ($errors->any())
-                    <div>
-                        Errors:
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
+                <br>
+                <br>
+                    <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 bg-white border-b border-gray-200">
+                                <p class="text-red-600"> Failed to add post : </p> <br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li><p class="text-red-600">{{ $error }}</p></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 @endif
                 {{ $slot }}

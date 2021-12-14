@@ -1,0 +1,35 @@
+
+
+
+.panel {
+    display: inline;
+}
+.panel__btn {
+    display: table-cell;
+    width: 50%;
+    padding-left: 10px;
+}
+  
+.panel__btn .btn {
+    width: 100%;
+}
+
+.input {
+    display: inline;
+}
+
+.input__text {
+    display: table-cell;
+    width: 50%;
+    padding-left: 10px;
+}
+
+.buttons {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.action_btn {
+    width: 350px;
+    margin: 0 auto;
+}
