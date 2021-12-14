@@ -15,10 +15,11 @@ use App\Http\Controllers\ProfileController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/profiles', [ProfileController::class, 'apiStore'])
+    ->name('api.profiles.store');
 
 Route::get('/profiles', [ProfileController::class, 'apiIndex'])
     ->name('api.profiles.index');
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

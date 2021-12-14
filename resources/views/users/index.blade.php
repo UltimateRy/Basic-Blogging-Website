@@ -18,6 +18,21 @@
         <ul>
             <li v-for="user in users">@{{ user.name }} </li>
         </ul>   
+
+            <h2>Create new user</h2>
+
+            Username : <input type ="text" id="input" v-model="newUsername">
+            <br>
+            Name : <input type ="text" id="input" v-model="newName">
+            <br>
+            Email Address : <input type ="text" id="input" v-model="newEmail">
+            <br>
+            Password : <input type ="text" id="input" v-model="newPassword">
+            <br>
+            Role : <input type ="text" id="input" v-model="newRole">
+            <br>
+            <button @click="createUser">Create</button>
+
     </div>
 
     <ul>
@@ -26,7 +41,6 @@
         <li><h3>Username: {{$user->username}}</h3></li>
         <li><h3>Name: {{$user->name}}</h3></li>
         <li><h3>Email: {{$user->email}}</h3></li>
-        <li><h3>Password: {{$user->password}}</h3></li>
         <br>
         <br>
         <br>
@@ -40,6 +54,35 @@
         el: "#root",
         data: {
             users: [],
+            
+            newUsername: '',
+            newName: '',
+            newEmail: '',
+            newPassword: '',
+            newRole: '',
+        },
+        methods: {
+            createUser: function(){
+                axios.post("{{ route ('api.profiles.store') }}",
+                {
+                    username: this.newUsername,
+                    name: this.newName,
+                    email: this.newEmail,
+                    password: this.newPassword,
+                    role: this.newRole,
+                })
+                .then(response => {
+                    this.users.push(response.data);
+                    this.newUsername = ''
+                    this.newName = ''
+                    this.newEmail = ''
+                    this.newPassword = ''
+                    this.newRole = ''
+                })
+                .catch(response => {
+                    console.log(response);
+                })
+            }
         },
         mounted() {
             axios.get("{{ route ('api.profiles.index') }}")

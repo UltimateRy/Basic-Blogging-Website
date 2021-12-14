@@ -52,6 +52,38 @@ class ProfileController extends Controller
         //
     }
 
+    public function apiStore(Request $request)
+    {
+
+        /*
+        if (! Gate::allows('delete-post', $postForDeletion)) {
+            return response('Access denied : You cannot create a new user');
+        }
+        */
+
+
+        $validatedData = $request->validate([
+            'username' => 'required|max:255',
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'password' => 'required|max:255',
+            'role' => 'required|max:255',
+        ]);
+
+        //return response('Working');
+
+        $u = new User();
+        $u->username = $request['username'];
+        $u->name = $request['name'];
+        $u->email = $request['email'];
+        $u->password = $request['password'];
+        $u->role = $request['role'];
+        $u->save();
+
+        return $u;
+    }
+
+
     /**
      * Display the specified resource.
      *
