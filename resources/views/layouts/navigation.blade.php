@@ -16,6 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @can('update', $post)
+
+                
+                @endcan
+
+
             </div>
 
             <!-- Settings Dropdown -->

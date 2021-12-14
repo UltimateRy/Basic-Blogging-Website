@@ -11,7 +11,6 @@
 </head>
 <body>
 
-    <h1>Example App - @yield('title')</h1>
 
     @if ($errors->any())
         <div>
