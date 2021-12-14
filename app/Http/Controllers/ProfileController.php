@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Post;
 
@@ -15,8 +15,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index()    {
         //
         $users = User::all();
         //dd($users);
@@ -54,14 +53,6 @@ class ProfileController extends Controller
 
     public function apiStore(Request $request)
     {
-
-        /*
-        if (! Gate::allows('delete-post', $postForDeletion)) {
-            return response('Access denied : You cannot create a new user');
-        }
-        */
-
-
         $validatedData = $request->validate([
             'username' => 'required|max:255',
             'name' => 'required|max:255',
@@ -69,8 +60,6 @@ class ProfileController extends Controller
             'password' => 'required|max:255',
             'role' => 'required|max:255',
         ]);
-
-        //return response('Working');
 
         $u = new User();
         $u->username = $request['username'];

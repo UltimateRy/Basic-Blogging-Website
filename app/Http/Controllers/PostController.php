@@ -121,6 +121,7 @@ class PostController extends Controller
         
         return response('Access approved : You can delete this post');
         
+        //UNCOMMENT THESE
         //$postForDeletion->delete();
         //return redirect()->route('posts.index')->with('message', 'Post was deleted.');
     }
