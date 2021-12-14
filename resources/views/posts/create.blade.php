@@ -1,11 +1,10 @@
+<head>     
+        <title>Profile</title>
+</head>
 
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New Post') }}
-        </h2>
-    </x-slot>
+   
 
 <br>
 
@@ -17,17 +16,18 @@
                     @csrf
                     <p>Title: <br><br> <input type="text" style="font-size: 20px; width: 655px;" name="title"
                     value="{{ old('title')}}"></p>
-                    <br> <br>
-                    <p>Contents: <br> <br> <input type="text" style="font-size: 20px; width: 655px; height: 300px" name="contents"
-                    value="{{ old('contents')}}"></p>
+                    <br> 
+                    <br>
+                    <p>Contents: <br> <br> <textarea style="font-size: 20px; width: 655px; height: 300px; resize: none" name="contents"
+                    value="{{ old('contents')}}"></textarea></p>
                     <br>
                     <div class="panel__btn">
-                    <input type="submit" value="Submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full">
+                        <input type="submit" value="Submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full">
                     </div>
                     <br>
                     <div class="panel__btn">
-                    <a href="{{route('posts.index') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">Cancel</a>
-</div>
+                        <a href="{{route('posts.index') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">Cancel</a>
+                    </div>
                 </form>
             </div>
         </div>

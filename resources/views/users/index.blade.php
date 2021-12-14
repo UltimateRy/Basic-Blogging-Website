@@ -41,16 +41,36 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <h2>Create new user</h2>
+                        <br>
+                        Username : 
+                        <br>
+                        
+                        <input type ="text" id="input" v-model="newUsername">
+                        <br>
+                        <br>
 
-                        Username : <input type ="text" id="input" v-model="newUsername">
+                        Name : 
                         <br>
-                        Name : <input type ="text" id="input" v-model="newName">
+                        
+                        <input type ="text" id="input" v-model="newName">
                         <br>
-                        Email Address : <input type ="text" id="input" v-model="newEmail">
                         <br>
-                        Password : <input type ="text" id="input" v-model="newPassword">
+
+                        Email Address : 
                         <br>
-                        Role : <input type ="text" id="input" v-model="newRole">
+                        <input type ="text" id="input" v-model="newEmail">
+                        <br>
+                        <br>
+
+                        Password : 
+                        <br>
+                        <input type ="text" id="input" v-model="newPassword">
+                        <br>
+                        <br>
+
+                        Role : 
+                        <br>
+                        <input type ="text" id="input" v-model="newRole">
                         <br>
                         <br>
                         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" @click="createUser">Create</button>
