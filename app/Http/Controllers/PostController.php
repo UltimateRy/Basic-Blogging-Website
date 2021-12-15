@@ -91,6 +91,13 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        $postForEditing = Post::findOrFail($id);
+
+        if (! Gate::allows('update-post', $postForEditing)) {
+            return response('Access denied : You cannot edit this post');
+        }
+        return response('Access approved : You can edit this post');
+
     }
 
     /**
@@ -103,6 +110,16 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'contents' => 'required|max:255',
+        ]);
+
+        Post::find($id)->update([
+            'title' => request('title'),
+            'contents' => request('contents'),
+        ]);
+    
     }
 
     /**

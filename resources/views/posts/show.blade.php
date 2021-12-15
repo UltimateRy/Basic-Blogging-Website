@@ -12,7 +12,7 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 <div class="flex flex-row content-evenly">
                     <div class="w-1/2">
-                        <p>{{$post->title}} </p>
+                    <p class="text-blue-400 text-3xl font-bold">{{$post->title}} </p>
                     </div>
                     <div class="w-1/2">
                         <a class="float-right text-right bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full" 
@@ -23,7 +23,7 @@
                 
                 <div class="bg-blue overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-blue-100 border-b border-gray-200">
-                        <li>Contents: {{$post->contents}} </li>
+                        Contents: {{$post->contents}} </li>
                         <br>
                     </div>
                 </div>
@@ -33,12 +33,8 @@
                 
                     @can('update', $post)
                     <div class="w-1/3">
-                        <form method="POST"
-                            action="{{ route('posts.destroy', ['id' => $post->id]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full" >Edit Post</button>
-                        </form>
+                        <a class="float-left text-left bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full" 
+                        href="{{ route('posts.updatePage', ['id' => $post->user->id]) }}">Edit Post</a>
                     </div>
                     <br>
                     <div class="w-1/3">
@@ -61,23 +57,30 @@
     <div class="py-6 max-w-6xl mx-auto sm:px-6 lg:px-8 w:full">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-
                 <h1>Comments:</h1>
             </div>
         </div>
     </div>
 
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 w:full">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <ul>
+                    @foreach ($post->comments as $comment)
+                        <li><h3>Comment ID: {{$comment->id}}</h3></li>
+                        <li><h3>Made by user: <a href="{{route('profiles.show', [ 'id' => $comment->user_id ]) }}">{{$comment->user_id}}</a></h3></li>
+                        <li><h4>Comment Contents: </h4></li>
+                        <li>{{$comment->contents}}</li>
+                        
+                        @can('update', $comment)
+                        <br>
+                        <br>
+                        <br>
+                        @endcan
 
-<ul>
-    @foreach ($post->comments as $comment)
-        <li><h3>Comment ID: {{$comment->id}}</h3></li>
-        <li><h3>Made by user: <a href="{{route('profiles.show', [ 'id' => $comment->user_id ]) }}">{{$comment->user_id}}</a></h3></li>
-        <li><h4>Comment Contents: </h4></li>
-        <li>{{$comment->contents}}</li>
-        <br>
-        <br>
-        <br>
-    @endforeach
-</ul>
-
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
 </x-app-layout>

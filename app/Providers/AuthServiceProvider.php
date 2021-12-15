@@ -19,6 +19,8 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
 
         Post::class => PostPolicy::class,
+        
+        Comment::class => CommentPolicy::class,
 
     ];
 
@@ -31,5 +33,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Gate::define('delete-post', [PostPolicy::class, 'delete']);
+        Gate::define('update-post', [PostPolicy::class, 'update']);
+
     }
 }
