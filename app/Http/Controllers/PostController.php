@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
 use App\Models\Comment;
 
+use Session;
+
+
 class PostController extends Controller
 {
     /**
@@ -136,10 +139,11 @@ class PostController extends Controller
             return response('Access denied : You cannot delete this post');
         }
         
-        return response('Access approved : You can delete this post');
+        //return response('Access approved : You can delete this post');
         
         //UNCOMMENT THESE
         //$postForDeletion->delete();
-        //return redirect()->route('posts.index')->with('message', 'Post was deleted.');
+        
+        return redirect()->route('profiles.show', ['id' => \Auth::user()->id])->with('message', 'Post Deleted');
     }
 }

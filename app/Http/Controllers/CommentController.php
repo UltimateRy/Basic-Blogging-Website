@@ -61,6 +61,12 @@ class CommentController extends Controller
     public function edit($id)
     {
         //
+        $commentForEditing = Comment::findOrFail($id);
+
+        if (! Gate::allows('update-comment', $commentForEditing)) {
+            return response('Access denied : You cannot edit this comment');
+        }
+        return response('Access approved : You can edit this comment');
     }
 
     /**
@@ -73,6 +79,13 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'contents' => 'required|max:255',
+        ]);
+
+        Comment::find($id)->update([
+            'contents' => request('contents'),
+        ]);
     }
 
     /**
@@ -84,5 +97,17 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+        $commentForDeletion = Comment::findOrFail($id);
+
+        if (! Gate::allows('delete-comment', $commentForDeletion)) {
+            return response('Access denied : You cannot delete this comment');
+        }
+    
+        //return response('Access approved : You can delete this comment');
+        
+        //UNCOMMENT THESE
+        //$commentForDeletion->delete();
+        return redirect()->route('posts.show', ['id' => $commentForDeletion->post_id])->with('message', 'Comment deleted.');
+
     }
 }

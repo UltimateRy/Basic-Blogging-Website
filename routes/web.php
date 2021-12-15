@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -55,5 +56,16 @@ Route::get('posts/{id}/edit', [PostController::class, 'edit'])
     ->name('posts.updatePage')->middleware(['auth']);
 Route::patch('posts/{id}/edit', [PostController::class, 'update'])
     ->name('posts.update')->middleware(['auth']);
+
+
+//COMMENT ROUTES
+
+Route::delete('comments/{id}', [CommentController::class, 'destroy'])
+    ->name('comments.destroy')->middleware(['auth']);
+Route::get('comments/{id}/edit', [CommentController::class, 'edit'])
+    ->name('comments.updatePage')->middleware(['auth']);
+Route::patch('comments/{id}/edit', [PostController::class, 'update'])
+    ->name('comments.update')->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';

@@ -88,12 +88,12 @@
                                     
                                         <div class="w-1/3">
                                             <a class="float-left text-left bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
-                                                href="{{ route('posts.updatePage', ['id' => $post->user->id]) }}">Edit</a>
+                                                href="{{ route('comments.updatePage', ['id' => $post->user->id]) }}">Edit</a>
                                         </div>
                                         <br>
                                         <div class="w-1/3">
                                             <form method="POST"
-                                                action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+                                                action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
