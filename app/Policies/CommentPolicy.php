@@ -21,6 +21,14 @@ class CommentPolicy
         //
     }
 
+
+    public function before(User $user, $ability)
+    {
+      if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view the model.
      *

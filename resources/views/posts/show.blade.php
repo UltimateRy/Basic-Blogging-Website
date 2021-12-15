@@ -33,8 +33,8 @@
                 
                     @can('update', $post)
                     <div class="w-1/3">
-                        <a class="float-left text-left bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full" 
-                        href="{{ route('posts.updatePage', ['id' => $post->user->id]) }}">Edit Post</a>
+                        <a class="float-left text-left bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
+                        href="{{ route('posts.updatePage', ['id' => $post->id]) }}">Edit Post</a>
                     </div>
                     <br>
                     <div class="w-1/3">
@@ -57,7 +57,7 @@
     <div class="py-6 max-w-6xl mx-auto sm:px-6 lg:px-8 w:full">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <h1>Comments:</h1>
+            <p class="text-blue-400 text-xl font-bold">Comments</p>
             </div>
         </div>
     </div>
@@ -67,20 +67,50 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 <ul>
                     @foreach ($post->comments as $comment)
-                        <li><h3>Comment ID: {{$comment->id}}</h3></li>
-                        <li><h3>Made by user: <a href="{{route('profiles.show', [ 'id' => $comment->user_id ]) }}">{{$comment->user_id}}</a></h3></li>
-                        <li><h4>Comment Contents: </h4></li>
-                        <li>{{$comment->contents}}</li>
-                        
-                        @can('update', $comment)
-                        <br>
-                        <br>
-                        <br>
-                        @endcan
 
+                    <div class="bg-blue overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-blue-100 border-b border-gray-200">
+
+                            <div class="flex flex-row content-evenly">
+                                <div class="w-1/2">
+                                    <p class="text-blue-400 text-xl font-bold">{{$comment->contents}} </p>
+                                </div>
+                                <div class="w-1/2">
+                                    <a class="float-right text-right bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full" 
+                                    href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">Comment by : {{$comment->user->name}}</a>
+                                </div>
+                            </div> 
+                            <br>
+                            <li>{{$comment->contents}}</li>
+                            <br>
+                            <div class="flex flex-row content-evenly">
+                                @can('update', $comment)
+                                    
+                                        <div class="w-1/3">
+                                            <a class="float-left text-left bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
+                                                href="{{ route('posts.updatePage', ['id' => $post->user->id]) }}">Edit</a>
+                                        </div>
+                                        <br>
+                                        <div class="w-1/3">
+                                            <form method="POST"
+                                                action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
+                                            </form>
+                                        </div>
+                                        <div class="w-1/3">
+                                            <p type="submit" class="text-center bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
+                                        </div>
+                                @endcan
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     @endforeach
                 </ul>
             </div>
         </div>
     </div>
+    <br>
 </x-app-layout>

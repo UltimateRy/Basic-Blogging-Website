@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
-use Auth;
+use App\Models\Comment;
 
-class DashboardController extends Controller
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +18,6 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        $friends_posts = Post::whereIn('user_id', Auth::user()->friends()->pluck('id'))->paginate(1);
-
-        //$friends_posts = Post::with('user')->get();
-
-        $friends = Auth::user()->friends();
-
-
-        return view('dashboard', [
-          'friends_posts' => $friends_posts, 'friends' => $friends
-        ]);
     }
 
     /**
