@@ -16,7 +16,7 @@
                     </div>
                     <div class="w-1/2">
                         <a class="float-right text-right bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full" 
-                        href="{{ route('profiles.show', ['id' => $post->user->id]) }}">Posted by : {{$post->user->username}}</a>
+                        href="{{ route('profiles.show', ['id' => $post->user->id]) }}">Posted by : {{$post->user->name}}</a>
                     </div>
                 </div> 
                 <br>
@@ -76,7 +76,7 @@
                                     <p class="text-blue-400 text-xl font-bold">{{$comment->contents}} </p>
                                 </div>
                                 <div class="w-1/2">
-                                    <a class="float-right text-right bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full" 
+                                    <a class="float-right text-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full" 
                                     href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">Comment by : {{$comment->user->name}}</a>
                                 </div>
                             </div> 

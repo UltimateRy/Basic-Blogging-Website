@@ -26,5 +26,13 @@ class Post extends Model
          $userId = $userId ?: auth()->id();
          return $this->user_id === $userId;
     }
-    
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'contents',
+    ];
 }

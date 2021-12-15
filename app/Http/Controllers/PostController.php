@@ -99,7 +99,12 @@ class PostController extends Controller
         if (! Gate::allows('update-post', $postForEditing)) {
             return response('Access denied : You cannot edit this post');
         }
-        return response('Access approved : You can edit this post');
+       
+       // return response('Access approved : You can edit this post');
+        return view('posts.edit', [
+            'post' => $postForEditing
+        ]);
+       //return redirect()->route('posts.updatePage', ['id' => $postForEditing->id]);
 
     }
 
@@ -122,7 +127,8 @@ class PostController extends Controller
             'title' => request('title'),
             'contents' => request('contents'),
         ]);
-    
+
+        return redirect()->route('posts.show', ['id' => $id])->with('message', 'Post Updated');
     }
 
     /**
@@ -143,7 +149,6 @@ class PostController extends Controller
         
         //UNCOMMENT THESE
         //$postForDeletion->delete();
-        
         return redirect()->route('profiles.show', ['id' => \Auth::user()->id])->with('message', 'Post Deleted');
     }
 }

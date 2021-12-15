@@ -54,7 +54,7 @@ Route::delete('posts/{id}', [PostController::class, 'destroy'])
     ->name('posts.destroy')->middleware(['auth']);
 Route::get('posts/{id}/edit', [PostController::class, 'edit'])
     ->name('posts.updatePage')->middleware(['auth']);
-Route::patch('posts/{id}/edit', [PostController::class, 'update'])
+Route::post('posts/{id}/edit', [PostController::class, 'update'])
     ->name('posts.update')->middleware(['auth']);
 
 

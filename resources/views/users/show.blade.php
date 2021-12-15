@@ -40,10 +40,10 @@
                     @foreach ($posts as $post)
                     <div class="max-w-8xl mx-auto sm:px-4 lg:px-4 w:full" onclick="location.href='{{route('posts.show', [ 'id' => $post->id ]) }}';" style="cursor: pointer;">
                         <div class="bg-blue-200 overflow-hidden shadow-sm sm:rounded-lg">
-                            <div class="p-6 bg-blue-300 border-b border-gray-200">
-                                <p class="text-white transparent text-2xl font-bold">{{$post->title}}</p>
+                            <div class="p-6 bg-blue-100 border-b border-gray-200">
+                                <p class="text-blue-400 transparent text-2xl font-bold">{{$post->title}}</p>
                                 <br>
-                                <p class="text-m text-white">{{$post->contents}}</p>
+                                <p class="text-m text-black">{{$post->contents}}</p>
                                 <br>
                             </div>
                         </div>
