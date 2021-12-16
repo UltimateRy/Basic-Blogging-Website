@@ -29,7 +29,7 @@
                         <div class="panel__btn">
                             <input type="submit" value="Update" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full">
                         </div>
-                        
+                        <br>
                         <div class="panel__btn">
                             <a href="{{route('posts.show', ['id' => $post->id] ) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">Cancel</a>
                         </div>

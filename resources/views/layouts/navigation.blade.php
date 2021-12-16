@@ -13,28 +13,33 @@
                 <!-- Navigation Links -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profiles.show', [Auth::user()->id])" :active="request()->routeIs('profiles.show')">
-                        {{ __('My Profile') }}
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <p class="text-blue-400 text-xl font-bold "> {{ __('Home') }}</p>
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Home') }}
+                    <x-nav-link :href="route('profiles.show', [Auth::user()->id])" :active="request()->routeIs('profiles.show')">
+                    <p class="text-blue-400 text-xl font-bold "> {{ __('My Profile') }}</p>
                     </x-nav-link>
                 </div>
 
-                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profiles.show', [Auth::user()->id])" :active="request()->routeIs('profiles.show')">
+                    <p class="text-blue-400 text-xl font-bold "> {{ __('Friends') }}</p>
+                    </x-nav-link>
+                </div>
+
                 @if(Auth::user()->isAdmin())
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profiles.index')" :active="request()->routeIs('profiles.index')">
-                        {{ __('Manage Users') }}
+                    <p class="text-red-400 text-xl font-bold ">{{ __('Manage Users') }}</p>
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                        {{ __('Manage Posts') }}
+                    <p class="text-red-400 text-xl font-bold "> {{ __('Manage Posts') }}</p>
                     </x-nav-link>
                 </div>
                 @endcan
