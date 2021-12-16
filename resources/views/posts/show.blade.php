@@ -137,7 +137,7 @@
                                 
                                         <div class="w-1/2">
                                             <a class="float-left text-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full" 
-                                            href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">Comment by :  @{{ comment.user_id }}  </a>
+                                            href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">Comment by :  @{{ comment.user.username }}  </a>
                                         </div>
                                         @can('update', $comment)
                                             <div class="w-1/10">

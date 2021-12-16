@@ -28,6 +28,9 @@ class CommentController extends Controller
     }
 
     public function apiIndexPost(Request $request) {
+
+        $userComments = Comment::with('user')->get();
+        return $userComments;
         return Comment::all()->where('post_id', $request->id);
     }
 
