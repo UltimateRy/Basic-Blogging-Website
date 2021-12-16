@@ -88,7 +88,7 @@ class ProfileController extends Controller
        // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
 
         return view('users.show', [
-            'profile' => $user, 'posts' => $user->posts()->paginate(2)
+            'profile' => $user, 'posts' => $user->posts()->paginate(4)
         ]);
     }
 

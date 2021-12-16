@@ -29,17 +29,13 @@ class CommentController extends Controller
 
     public function apiIndexPost(Request $request) {
 
-        $userComments = Comment::with('user')->get();
+        $userComments = Comment::with('user')->where('post_id', $request->id)->get();
         return $userComments;
-        return Comment::all()->where('post_id', $request->id);
+        
+        //THIS RETURNS ALL COMMENTS WITH USERS AND WORKS
+        //$userComments = Comment::with('user')->get();
+        //return $userComments;
     }
-
-
-    //public function apiIndex($id) {
-    //    $comments = Comment::all()->where('post_id', '=', $id)->get();
-    //    return $comments;
-    //}
-
 
     /**
      * Show the form for creating a new resource.
@@ -156,13 +152,17 @@ class CommentController extends Controller
 
         if (! Gate::allows('delete-comment', $commentForDeletion)) {
             return response('Access denied : You cannot delete this comment');
-        }
-    
-        //return response('Access approved : You can delete this comment');
-        
-        //UNCOMMENT THESE
+        }     
         $commentForDeletion->delete();
         return redirect()->route('posts.show', ['id' => $commentForDeletion->post_id])->with('message', 'Comment deleted.');
 
+    }
+
+    public function apiDestroy($id) {
+
+        $commentForDeletion = Comment::findOrFail($id);
+
+        $commentForDeletion->delete();
+        return response('Access approved : You can delete this comment');
     }
 }

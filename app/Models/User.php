@@ -39,6 +39,19 @@ class User extends Authenticatable
         }
     }
 
+    public function canEditComment($id) 
+    {
+
+        $comment = Comment::findOrFail($id);
+
+        if (Auth::user()->id == $comment->user_id)
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *

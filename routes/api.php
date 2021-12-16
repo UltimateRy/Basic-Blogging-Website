@@ -36,6 +36,9 @@ Route::post('/posts/comments/{id}', [CommentController::class, 'apiIndexPost'])
 Route::get('/comments', [CommentController::class, 'apiIndex'])
     ->name('api.comments.index');
 
+Route::post('/comments/destroy/{id}', [CommentController::class, 'apiDestroy'])
+    ->name('api.comments.destroy');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
