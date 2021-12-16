@@ -87,11 +87,19 @@ class PostController extends Controller
     {
         //
          //
-         $post = Post::findOrFail($id);
-         // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
-  
+        $post = Post::findOrFail($id);
+
+        $postImage = PostImage::find($post->id);
+
+        //$postImage = PostImage::findOrFail(2);
+
+        //dd($postImage);
+
          return view('posts.show', [
-              'post' => $post, 'comments' => $post->comments()
+              'post' => $post, 
+              'comments' => $post->comments(),
+              'image' => $postImage,
+
          ]);
     }
 

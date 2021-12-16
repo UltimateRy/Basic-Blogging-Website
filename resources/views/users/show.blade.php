@@ -14,7 +14,7 @@
                         <br>
                     </div>
                     <div class="w-1/2 px-2">
-                        @if (! Auth::user() ==  $profile->id)
+                        @if (!(Auth::user()->id ==  $profile->id))
                             @if ($isFriend)
                                 <a class="text-left float-left bg-transparent text-green-700 font-semibold py-2 px-6 border border-green-500 rounded-full"
                                 href="{{route('profiles.follow', [ 'id' => $profile->id ]) }}"> Following </a>

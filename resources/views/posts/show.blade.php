@@ -26,6 +26,13 @@
                 <div class="bg-blue overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-blue-100 border-b border-gray-200">
                         {{$post->contents}} </li>
+                        @if(empty($image))
+                        @else
+                        <img class="bd-placeholder-img" src="/images/postImages/{{$image->file_path}}" alt="{{ $image->file_path }}">
+                        <br>
+                        <br>
+                        <br>
+                        @endif
                         <br>
                     </div>
                 </div>
@@ -33,6 +40,7 @@
                 <div class="flex flex-row content-evenly">
 
                 
+
                     @can('update', $post)
                     <div class="w-1/3">
                         <a class="float-left text-left bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
