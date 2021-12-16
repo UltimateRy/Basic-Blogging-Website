@@ -16,29 +16,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        
         $friends = Auth::user()->friends;
-
         $friends_id = $friends->pluck('id');
 
         //$posts = Post::where('user_id', $friends_id)->get();
-
         //dd($friends_id);
 
         $friends_id = [9, 10];
-
-
         $friends_posts = Post::whereIn('user_id', $friends_id)->paginate(2);
-
-
-
-//        dd($friends_posts);
+        //dd($friends_posts);
 
         return view('dashboard', [
           'friends_posts' => $friends_posts, 'friends' => $friends
         ]);
-
-    
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FriendsController;
 
 
 /*
@@ -26,11 +27,8 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')->middleware(['auth']);
 
-    //})->middleware(['auth'])->name('dashboard');
-
-//Route::get('profile/{username?}', function($user = null){
-//    return view('profile', ['username'=>$user]);
-//});
+Route::get('/friends', [FriendsController::class, 'index'])
+    ->name('friends')->middleware(['auth']);
 
 //PROFILES ROUTES
 
@@ -38,7 +36,6 @@ Route::get('/profiles', [ProfileController::class, 'index'])
     ->name('profiles.index')->middleware(['auth', 'role']);
 Route::get('/profiles/{id}', [ProfileController::class, 'show'])
     ->name('profiles.show')->middleware('auth');
-
 
 //POSTS ROUTES
 
@@ -56,7 +53,6 @@ Route::get('posts/{id}/edit', [PostController::class, 'edit'])
     ->name('posts.updatePage')->middleware(['auth']);
 Route::post('posts/{id}/edit', [PostController::class, 'update'])
     ->name('posts.update')->middleware(['auth']);
-
 
 //COMMENT ROUTES
 
