@@ -29,6 +29,12 @@ class User extends Authenticatable
 
     //NOT TESTED YET
 
+    public function isFollowing(User $user)
+    {
+        return !! $this->friends()->where('friend_id', $user->id)->count();
+    }
+
+
     public function addFriend(User $user)
     {
         $this->friends()->attach($user->id);

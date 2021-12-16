@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Auth;
 use Session;
+use Carbon\Carbon;
 
 
 class CommentController extends Controller
@@ -70,7 +71,7 @@ class CommentController extends Controller
         $c->contents = $request['contents'];
         $c->user_id = $request['user_id'];
         $c->post_id = $request['post_id'];
-        
+        $c->created_at = Carbon::now();
         
         //return response('Access approved : You can post this comment');
 

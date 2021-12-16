@@ -98,7 +98,7 @@
                                     <br>
                                 @endcan
                                 <div class="w-1/2">
-                                    <p type="submit" class="text-right float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
+                                    <p type="submit" class="text-right float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($comment->created_at))}} </p>
                                 </div>
                             </div> 
                             <br>

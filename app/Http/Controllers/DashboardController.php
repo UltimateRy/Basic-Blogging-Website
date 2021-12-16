@@ -23,7 +23,7 @@ class DashboardController extends Controller
         //$posts = Post::where('user_id', $friends_id)->get();
         //dd($friends_id);
 
-        $friends_id = [9, 10];
+        //$friends_id = [9, 10];
         $friends_posts = Post::whereIn('user_id', $friends_id)->paginate(2);
         //dd($friends_posts);
 

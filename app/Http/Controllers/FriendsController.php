@@ -14,9 +14,12 @@ class FriendsController extends Controller
     {
         //
 
+        $friends = Auth::user()->friends;
+
         $users = User::all();
+
         return view('friends', [
-            'friends' => $users
+            'friends' => $friends
         ]);
 
     }

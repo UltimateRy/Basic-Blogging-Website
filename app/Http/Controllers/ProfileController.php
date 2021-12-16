@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Post;
-
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -85,12 +85,30 @@ class ProfileController extends Controller
     {
         //
         $user = User::findOrFail($id);
-       // $posts = Post::where('id' ,'=' ,$id)->get()->toarray();
+
+        $isFriend = (boolean) Auth::user()->friends()->where('users.id', $id)->count();
+    
 
         return view('users.show', [
-            'profile' => $user, 'posts' => $user->posts()->paginate(4)
+            'profile' => $user, 'posts' => $user->posts()->paginate(4), 'isFriend' => $isFriend,
         ]);
     }
+
+    public function follow($id) 
+    {
+        $userToAdd = User::findOrFail($id);
+        $user = Auth::user();
+        
+        if ($user->isFollowing($userToAdd)) {
+            $user->removeFriend($userToAdd);
+        } else {
+            $user->addFriend($userToAdd);
+        }
+        return redirect()->route('profiles.show', [
+            'id' => $userToAdd->id
+        ]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

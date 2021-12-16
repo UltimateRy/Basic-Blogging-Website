@@ -51,6 +51,7 @@
                     <br>
                     @endforeach
                     {{$friends_posts->links() }}
+                    <br>
                 </div>      
             </div>
         </div>

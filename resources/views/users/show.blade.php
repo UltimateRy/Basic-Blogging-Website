@@ -8,8 +8,23 @@
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 w:full">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <p class="text-blue-400 text-3xl font-bold text-center">{{$profile->username}} </p>
-                <br>
+                <div class="flex flex-row">
+                    <div class="w-1/2 px-8">
+                        <p class="text-blue-400 text-3xl font-bold text-right">{{$profile->username}} </p>
+                        <br>
+                    </div>
+                    <div class="w-1/2 px-2">
+                        @if (! Auth::user() ==  $profile->id)
+                            @if ($isFriend)
+                                <a class="text-left float-left bg-transparent text-green-700 font-semibold py-2 px-6 border border-green-500 rounded-full"
+                                href="{{route('profiles.follow', [ 'id' => $profile->id ]) }}"> Following </a>
+                            @else
+                                <a class="float-left text-left bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-9 rounded-full"
+                                href="{{route('profiles.follow', [ 'id' => $profile->id ]) }}"> Follow </a>
+                            @endif
+                        @endif
+                    </div>
+                </div> 
                 <div class="flex flex-row">
                     <div class="w-1/2 px-6">
                         <div class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg">

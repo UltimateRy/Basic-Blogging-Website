@@ -24,9 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//DASHBOARD AND FRIENDS ROUTES
+
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')->middleware(['auth']);
-
 Route::get('/friends', [FriendsController::class, 'index'])
     ->name('friends')->middleware(['auth']);
 
@@ -36,6 +37,8 @@ Route::get('/profiles', [ProfileController::class, 'index'])
     ->name('profiles.index')->middleware(['auth', 'role']);
 Route::get('/profiles/{id}', [ProfileController::class, 'show'])
     ->name('profiles.show')->middleware('auth');
+Route::get('/profiles/{id}/follow', [ProfileController::class, 'follow'])
+    ->name('profiles.follow')->middleware('auth');
 
 //POSTS ROUTES
 
