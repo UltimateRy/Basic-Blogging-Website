@@ -64,7 +64,7 @@ Route::delete('comments/{id}', [CommentController::class, 'destroy'])
     ->name('comments.destroy')->middleware(['auth']);
 Route::get('comments/{id}/edit', [CommentController::class, 'edit'])
     ->name('comments.updatePage')->middleware(['auth']);
-Route::patch('comments/{id}/edit', [PostController::class, 'update'])
+Route::post('comments/{id}/edit', [CommentController::class, 'update'])
     ->name('comments.update')->middleware(['auth']);
 
 

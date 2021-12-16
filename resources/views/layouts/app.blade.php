@@ -17,6 +17,10 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-200">
@@ -37,7 +41,7 @@
                     <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 bg-white border-b border-gray-200">
-                                <p class="text-red-600"> Failed to add post : </p> <br>
+                                <p class="text-red-600"> Failed : </p> <br>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li><p class="text-red-600">{{ $error }}</p></li>

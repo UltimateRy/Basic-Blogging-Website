@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
 use App\Models\Comment;
+use Auth;
+use Session;
 
 
 class CommentController extends Controller
@@ -19,6 +21,22 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function apiIndex() {
+        $comments = Comment::all();
+        return $comments;
+    }
+
+    public function apiIndexPost(Request $request) {
+        return Comment::all()->where('post_id', $request->id);
+    }
+
+
+    //public function apiIndex($id) {
+    //    $comments = Comment::all()->where('post_id', '=', $id)->get();
+    //    return $comments;
+    //}
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,6 +57,29 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function apiStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'contents' => 'required|max:255',
+        ]);
+
+        //dd( $request);
+
+        $c = new Comment();
+        $c->contents = $request['contents'];
+        $c->user_id = $request['user_id'];
+        $c->post_id = $request['post_id'];
+        
+        
+        //return response('Access approved : You can post this comment');
+
+        $c->save();
+
+        session()->flash('message', 'Comment Successfully Added.');
+
+        return $c;
     }
 
     /**
@@ -66,7 +107,11 @@ class CommentController extends Controller
         if (! Gate::allows('update-comment', $commentForEditing)) {
             return response('Access denied : You cannot edit this comment');
         }
-        return response('Access approved : You can edit this comment');
+
+        return view('comments.edit', [
+            'comment' => $commentForEditing
+        ]);
+        //return response('Access approved : You can edit this comment');
     }
 
     /**
@@ -79,6 +124,9 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $commentForUpdating = Comment::findOrFail($id);
+
         $validatedData = $request->validate([
             'contents' => 'required|max:255',
         ]);
@@ -86,11 +134,15 @@ class CommentController extends Controller
         Comment::find($id)->update([
             'contents' => request('contents'),
         ]);
+
+
+        return redirect()->route('posts.show', ['id' => $commentForUpdating->post_id])->with('message', 'Comment updated.');
+
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+        
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -106,7 +158,7 @@ class CommentController extends Controller
         //return response('Access approved : You can delete this comment');
         
         //UNCOMMENT THESE
-        //$commentForDeletion->delete();
+        $commentForDeletion->delete();
         return redirect()->route('posts.show', ['id' => $commentForDeletion->post_id])->with('message', 'Comment deleted.');
 
     }

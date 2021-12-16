@@ -1,9 +1,11 @@
-
+<body>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Post') }}
         </h2>
+
+        
     </x-slot>
 
 
@@ -23,7 +25,7 @@
                 
                 <div class="bg-blue overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-blue-100 border-b border-gray-200">
-                        Contents: {{$post->contents}} </li>
+                        {{$post->contents}} </li>
                         <br>
                     </div>
                 </div>
@@ -47,7 +49,7 @@
                     </div>
                     @endcan
                     <div class="w-1/3">
-                        <p type="submit" class="text-center bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Post made on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
+                        <p type="submit" class="text-center float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Post made on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
                     </div>
                 </div>      
             </div>
@@ -64,7 +66,7 @@
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 w:full">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+            <div class="p-12 bg-white border-b border-gray-200">
                 <ul>
                     @foreach ($post->comments as $comment)
 
@@ -72,45 +74,166 @@
                         <div class="p-6 bg-blue-100 border-b border-gray-200">
 
                             <div class="flex flex-row content-evenly">
+                                
                                 <div class="w-1/2">
-                                    <p class="text-blue-400 text-xl font-bold">{{$comment->contents}} </p>
-                                </div>
-                                <div class="w-1/2">
-                                    <a class="float-right text-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full" 
+                                    <a class="float-left text-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full" 
                                     href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">Comment by : {{$comment->user->name}}</a>
+                                </div>
+                                @can('update', $comment)
+                                    
+                                    <div class="w-1/10">
+                                        <a class="float-right text-right bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
+                                            href="{{ route('comments.updatePage', ['id' => $comment->id]) }}">Edit</a>
+                                    </div>
+                                    <br>
+                                    <div class="w-1/2">
+                                        <form method="POST"
+                                            action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="float-right bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
+                                        </form>
+                                    </div>
+                                    <br>
+                                @endcan
+                                <div class="w-1/2">
+                                    <p type="submit" class="text-right float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
                                 </div>
                             </div> 
                             <br>
                             <li>{{$comment->contents}}</li>
-                            <br>
-                            <div class="flex flex-row content-evenly">
-                                @can('update', $comment)
-                                    
-                                        <div class="w-1/3">
-                                            <a class="float-left text-left bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
-                                                href="{{ route('comments.updatePage', ['id' => $post->user->id]) }}">Edit</a>
-                                        </div>
-                                        <br>
-                                        <div class="w-1/3">
-                                            <form method="POST"
-                                                action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
-                                            </form>
-                                        </div>
-                                        <div class="w-1/3">
-                                            <p type="submit" class="text-center bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
-                                        </div>
-                                @endcan
-                            </div>
                         </div>
                     </div>
                     <br>
                     @endforeach
                 </ul>
+                <br>
+                <div id="root">
+                    <div class="max-w-10xl mx-auto  lg:px-1">
+                        <div class="bg-blue-100 overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 bg-blue-100 border-b border-gray-200">
+                            <p class="text-blue-400 text-xl font-bold">Add Comment</p>
+                                <br>   
+                                <textarea style="font-size: 20px; width: 100%; height: 100px; resize: none" type ="text" id="input" v-model="newContents"> </textarea>
+                                <br>
+                                <br>
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full" @click="createComment">Comment</button>
+                                <br>
+                                <br>
+                                <p class="text-red-400 text-xl">@{{errorMessage}}</p>
+                                <p class="text-green-400 text-xl">@{{successMessage}}</p>
+                            </div>
+                        </div>
+                    </div>  
+                    <br>
+                    <ul v-for="comment in comments">
+                        <div class="max-w-10xl mx-auto lg:px-1">
+                            <div class="bg-blue-100 overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6 bg-blue-100 border-b border-gray-200">
+
+                                    <!-- COPIED FROM ABOVE -->
+
+                                    <div class="flex flex-row content-evenly">
+                                
+                                        <div class="w-1/2">
+                                            <a class="float-left text-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full" 
+                                            href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">Comment by :  @{{ comment.user_id }}  </a>
+                                        </div>
+                                        @can('update', $comment)
+                                            <div class="w-1/10">
+                                                <a class="float-right text-right bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
+                                                    href="{{ route('comments.updatePage', ['id' => $comment->id]) }}">Edit</a>
+                                            </div>
+                                            <br>
+                                            <div class="w-1/2">
+                                                <form method="POST"
+                                                    action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="float-right bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
+                                                </form>
+                                            </div>
+                                            <br>
+                                        @endcan
+                                        <div class="w-1/2">
+                                            <p type="submit" class="text-right float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($post->created_at))}} </p>
+                                        </div>
+                                    </div> 
+                                    <br>
+                                    <a v-bind:href="'/profiles/' + comment.user_id"><b>@{{ comment.contents }}</b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </ul>
+                   
+                </div>
             </div>
         </div>
-    </div>
-    <br>
+    </div>  
+    <br>  
+
 </x-app-layout>
+</body>
+
+<script>
+    var app = new Vue({
+        el: "#root",
+        data: {
+            comments: [],
+            
+            newContents: '',
+            newPostId: {!! $post->id !!},
+            newUserId: {!! Auth::user()->id !!},
+
+            successMessage: "",
+            errorMessage: '',
+        },
+        methods: {
+            createComment: function(){
+                this.errorMessage = ""
+                axios.post("{{ route ('api.comments.store') }}",
+                {
+                    contents: this.newContents,
+                    user_id: this.newUserId,
+                    post_id: this.newPostId,
+                })
+                .then(response => {
+                    this.comments.push(response.data);
+                    this.errorMessage = ""
+                    this.successMessage = "Comment Added Successfully"
+                    this.newContents = ''
+                })
+                .catch(error => {
+                    this.errorMessage = "Error : " + error.response.data.errors.contents[0];
+                    console.log(error);
+                })
+
+                axios.post("{{ route ('api.comments.indexPost', ['id' => $post->id ]) }}", {
+                params: {
+                    id: this.newPostId,
+                }
+                })
+                .then(response => {
+                    this.comments = response.data;
+                })
+                .catch(error => {
+                    console.log(response);
+                })
+            }
+        },
+        mounted() {
+            axios.post("{{ route ('api.comments.indexPost', ['id' => $post->id ]) }}", {
+                params: {
+                    id: this.newPostId,
+                }
+            })
+            .then( response => {
+                this.comments = response.data;
+            })
+            .catch(response => {
+                console.log(response);
+            })
+        },
+    });
+</script>

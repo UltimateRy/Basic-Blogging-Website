@@ -17,19 +17,22 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 <form method="POST" action="{{ route('posts.update', ['id'=> $post->id]) }}">
                     @csrf
-                    <p>Title: <br><br> <input type="text" style="font-size: 20px; width: 655px;" name="title"
-                    value="{{$post->title}}"></p>
+                    <p class="text-blue-400 text-xl font-bold ">Title: </p><br> <input type="text" style="font-size: 20px; width: 655px;" name="title"
+                    value="{{$post->title}}">
                     <br> 
                     <br>
-                    <p>Contents: <br> <br> <textarea style="font-size: 20px; width: 655px; height: 300px; resize: none" name="contents"
-                    value="{{$post->contents}}">{{$post->contents}}</textarea></p>
+                    <p class="text-blue-400 text-xl font-bold">Contents: </p><br> <textarea style="font-size: 20px; width: 655px; height: 300px; resize: none" name="contents"
+                    value="{{$post->contents}}">{{$post->contents}}</textarea>
                     <br>
-                    <div class="panel__btn">
-                        <input type="submit" value="Update" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full">
-                    </div>
                     <br>
-                    <div class="panel__btn">
-                        <a href="{{route('posts.show', ['id' => $post->id] ) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">Cancel</a>
+                    <div class="flex-row content-evenly">
+                        <div class="panel__btn">
+                            <input type="submit" value="Update" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full">
+                        </div>
+                        
+                        <div class="panel__btn">
+                            <a href="{{route('posts.show', ['id' => $post->id] ) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">Cancel</a>
+                        </div>
                     </div>
                 </form>
             </div>
