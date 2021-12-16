@@ -199,6 +199,7 @@
                     post_id: this.newPostId,
                 })
                 .then(response => {
+                    window.location.reload()
                     this.comments.push(response.data);
                     this.errorMessage = ""
                     this.successMessage = "Comment Added Successfully"
