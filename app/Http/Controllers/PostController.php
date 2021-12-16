@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
+use App\Models\PostImage;
 use App\Models\Comment;
 
 use Session;
@@ -55,6 +56,22 @@ class PostController extends Controller
         $a->contents = $validatedData['contents'];
         $a->user_id = \Auth::user()->id;
         $a->save();
+
+        if ($request->hasFile('file')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png'
+            ]);
+
+            $request->file->store('postImage', 'public');
+
+            $postImage = new PostImage([
+                
+                "id" => $a->id,
+                "file_path" => $request->file->hashName()
+            ]);
+            $postImage->save();
+        }
 
         session()->flash('message', 'Post Successfully Created.');
         return redirect()->route('dashboard');

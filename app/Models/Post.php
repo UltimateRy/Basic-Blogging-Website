@@ -20,13 +20,18 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    
+    public function postImage()
+    {
+        return $this->hasOne(PostImage::class);
+    }
+
     public function ownedBy($userId = null)
     {
          $userId = $userId ?: auth()->id();
          return $this->user_id === $userId;
     }
-        /**
+    
+    /**
      * The attributes that are mass assignable.
      *
      * @var string[]

@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class PostImage extends Model
 {
     use HasFactory;
+
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+    protected $fillable = [
+        "id",
+        "file_path", 
+        "created_at", 
+        "updated_at"
+    ];
 }
