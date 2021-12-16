@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 max-w-6xl mx-auto sm:px-6 lg:px-8 w:full">
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 w:full">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <p class="text-blue-400 text-3xl font-bold text-center">{{$profile->username}} </p>
@@ -14,14 +14,14 @@
                     <div class="w-1/2 px-6">
                         <div class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 bg-gray-100 border-b border-gray-200 text-center">
-                                <p>{{$profile->name}} </p>
+                                <p class="text-blue-400 text-xl font-bold text-center">{{$profile->name}} </p>
                             </div>
                         </div>
                     </div>
                     <div class="w-1/2">
                     <div class="bg-gray-100 overflow-hidden shadow-sm sm:rounded-lg text-center">
                             <div class="p-6 bg-gray-100 border-b border-gray-200">
-                                <p>{{$profile->email}} </p>
+                                <p class="text-blue-400 text-xl font-bold text-center">{{$profile->email}} </p>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 w:full" >
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 w:full" >
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
             <p class="text-blue-400 text-2xl font-bold text-center"> Posts</p>

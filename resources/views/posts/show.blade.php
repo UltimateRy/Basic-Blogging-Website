@@ -77,13 +77,13 @@
                             <div class="flex flex-row content-evenly">
                                 
                                 <div class="w-1/2">
-                                    <a class="float-left text-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full" 
+                                    <a class="float-left text-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-6 rounded-full" 
                                     href="{{ route('profiles.show', ['id' => $comment->user->id]) }}">By : {{$comment->user->name}}</a>
                                 </div>
                                 @can('update', $comment)
                                     
                                     <div class="w-1/10">
-                                        <a class="float-right text-right bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full" 
+                                        <a class="float-right text-right bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-6 rounded-full" 
                                             href="{{ route('comments.updatePage', ['id' => $comment->id]) }}">Edit</a>
                                     </div>
                                     <br>
@@ -92,7 +92,7 @@
                                             action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="float-right bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
+                                            <button type="submit" class="float-right bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded-full" >Delete</button>
                                         </form>
                                     </div>
                                     <br>
