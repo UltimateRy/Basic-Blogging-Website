@@ -166,7 +166,6 @@
                     post_id: this.newPostId,
                 })
                 .then(response => {
-                    this.comments.push(response.data);
                     this.errorMessage = ""
                     this.successMessage = "Comment Added Successfully"
                     this.newContents = ''

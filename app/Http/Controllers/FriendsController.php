@@ -8,12 +8,8 @@ use Auth;
 
 class FriendsController extends Controller
 {
-    //
-
     public function index()
     {
-        //
-
         $friends = Auth::user()->friends;
 
         $users = User::all();
@@ -21,8 +17,5 @@ class FriendsController extends Controller
         return view('friends', [
             'friends' => $friends
         ]);
-
     }
-
-
 }

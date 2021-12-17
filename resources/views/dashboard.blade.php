@@ -17,7 +17,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 w:full">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a class=" align-middle float-left text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-8 w-1/4 rounded-full" 
+                    <a class=" align-middle float-left text-center bg-green-500 
+                    hover:bg-green-700 text-white font-bold py-2 px-8 w-1/4 rounded-full" 
                     href="{{ route('posts.create') }}">
                     <p class="text-3xl font-bold ">Add New Post</p>
 

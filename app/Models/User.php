@@ -27,13 +27,10 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, "friend_users", 'user_id', 'friend_id');
     }
 
-    //NOT TESTED YET
-
     public function isFollowing(User $user)
     {
         return !! $this->friends()->where('friend_id', $user->id)->count();
     }
-
 
     public function addFriend(User $user)
     {
