@@ -21,7 +21,7 @@ use App\Http\Controllers\FriendsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontpage');
 });
 
 //DASHBOARD AND FRIENDS ROUTES
