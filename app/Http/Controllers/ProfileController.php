@@ -90,7 +90,7 @@ class ProfileController extends Controller
     
 
         return view('users.show', [
-            'profile' => $user, 'posts' => $user->posts()->paginate(4), 'isFriend' => $isFriend,
+            'profile' => $user, 'posts' => $user->posts()->paginate(3), 'isFriend' => $isFriend,
         ]);
     }
 

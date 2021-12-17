@@ -41,7 +41,7 @@
                                 <div class="flex flex-row content-evenly">
                                     <div class="w-1/3">
                                         Posted by : <a class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold px-3 w-1/4 rounded-full" 
-                                        href="{{route('profiles.show', [ 'id' => $friends_post->user_id ]) }}"> {{$friends_post->user->username}}</a>
+                                        href="{{route('profiles.show', [ 'id' => $friends_post->user_id ]) }}"> {{$friends_post->user->name}}</a>
                                     </div>
                                     <div class="w-1/2">
                                         <p type="submit" class="text-center float-right bg-transparent text-blue-700 font-semibold py-1 px-4 border border-blue-500 rounded-full" >Post made on: {{date('d-m-Y', strtotime($friends_post->created_at))}} </p>

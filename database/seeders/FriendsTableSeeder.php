@@ -27,6 +27,22 @@ class FriendsTableSeeder extends Seeder
             'friend_id' => 2,
         ]);
 
+
+        DB::table('friend_users')->insert([
+            'user_id' => 2,
+            'friend_id' => 3,
+        ]);
+
+        DB::table('friend_users')->insert([
+            'user_id' => 3,
+            'friend_id' => 2,
+        ]);
+
+        DB::table('friend_users')->insert([
+            'user_id' => 3,
+            'friend_id' => 1,
+        ]);
+
         $users = User::all();
 
         // Populate the pivot table

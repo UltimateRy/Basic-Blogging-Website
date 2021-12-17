@@ -141,6 +141,12 @@ class PostController extends Controller
             'contents' => 'required|max:255',
         ]);
 
+        $postForEditing = Post::findOrFail($id);
+
+        if (! Gate::allows('update-post', $postForEditing)) {
+            return response('Access denied : You cannot edit this post');
+        }
+
         Post::find($id)->update([
             'title' => request('title'),
             'contents' => request('contents'),
