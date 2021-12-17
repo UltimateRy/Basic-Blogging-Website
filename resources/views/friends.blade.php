@@ -19,7 +19,7 @@
                                  href="{{route('profiles.show', [ 'id' => $friend->id ]) }}"> {{$friend->username}}</a>
                                  <br>
                                  <br>
-                                 <a href="{{route('posts.show', [ 'id' => $friend->id ]) }}"><b>
+                                 <a href="{{route('profiles.show', [ 'id' => $friend->id ]) }}"><b>
                                 <p class="text-blue-400 transparent text-2xl font-bold">{{$friend->name}} </p></b></a>
                             </div>
                         </div>

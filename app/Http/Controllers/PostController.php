@@ -24,7 +24,6 @@ class PostController extends Controller
         return view('posts.index', [
             'posts' => $posts
         ]);
-
     }
 
     /**
@@ -62,9 +61,7 @@ class PostController extends Controller
             $request->validate([
                 'image' => 'mimes:jpeg,bmp,png'
             ]);
-
             $request->file->store('postImage', 'public');
-
             $postImage = new PostImage([
                 
                 "id" => $a->id,
@@ -72,7 +69,6 @@ class PostController extends Controller
             ]);
             $postImage->save();
         }
-
         session()->flash('message', 'Post Successfully Created.');
         return redirect()->route('dashboard');
     }
@@ -85,21 +81,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
-         //
         $post = Post::findOrFail($id);
 
         $postImage = PostImage::find($post->id);
-
-        //$postImage = PostImage::findOrFail(2);
-
-        //dd($postImage);
-
          return view('posts.show', [
               'post' => $post, 
               'comments' => $post->comments(),
               'image' => $postImage,
-
          ]);
     }
 
@@ -118,12 +106,9 @@ class PostController extends Controller
             return response('Access denied : You cannot edit this post');
         }
        
-       // return response('Access approved : You can edit this post');
         return view('posts.edit', [
             'post' => $postForEditing
         ]);
-       //return redirect()->route('posts.updatePage', ['id' => $postForEditing->id]);
-
     }
 
     /**
