@@ -20,13 +20,13 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profiles.show', [Auth::user()->id])" :active="request()->routeIs('profiles.show')">
-                    <p class="text-blue-400 text-xl font-bold "> {{ __('My Profile') }}</p>
+                    <p class="text-blue-400 text-xl font-bold "> {{ __('Profile') }}</p>
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('friends')" :active="request()->routeIs('friends')">
-                    <p class="text-blue-400 text-xl font-bold "> {{ __('Friends') }}</p>
+                    <p class="text-blue-400 text-xl font-bold "> {{ __('Following') }}</p>
                     </x-nav-link>
                 </div>
 
@@ -34,12 +34,6 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profiles.index', [Auth::user()->id])" :active="request()->routeIs('profiles.index')">
                     <p class="text-red-400 text-xl font-bold ">{{ __('Manage Users') }}</p>
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                    <p class="text-red-400 text-xl font-bold "> {{ __('Manage Posts') }}</p>
                     </x-nav-link>
                 </div>
                 @endcan

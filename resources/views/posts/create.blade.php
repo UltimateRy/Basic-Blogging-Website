@@ -28,7 +28,7 @@
                     <p>Add Image: </p>
                     <br>
                     <div class="form-group">
-                        <input type="file" name="file" required>
+                        <input type="file" name="file">
                     </div>
                     <br>
                     <div class="panel__btn">

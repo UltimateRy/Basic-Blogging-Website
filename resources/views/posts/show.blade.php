@@ -104,7 +104,7 @@
                                     <br>
                                 @endcan
                                 <div class="w-1/2">
-                                    <p type="submit" class="text-right float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented on: {{date('d-m-Y', strtotime($comment->created_at))}} </p>
+                                    <p type="submit" class="text-right float-right bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded-full" >Commented: {{date('d-m-Y', strtotime($comment->created_at))}} </p>
                                 </div>
                             </div> 
                             <br>
@@ -174,44 +174,15 @@
                     this.errorMessage = ""
                     this.successMessage = "Comment Added Successfully"
                     this.newContents = ''
+                    window.location.reload();
+
                 })
                 .catch(error => {
                     this.errorMessage = "Error : " + error.response.data.errors.contents[0];
                     console.log(error);
                 })
 
-                axios.post("{{ route ('api.comments.indexPost', ['id' => $post->id ]) }}", {
-                params: {
-                    id: this.newPostId,
-                }
-                })
-                .then(response => {
-                    window.location.reload();
-                    this.comments = response.data;
-                })
-                .catch(error => {
-                    console.log(response);
-                })
             },
-            editComment: function(id) {
-                window.open("/comments/" + id + "/edit/","_self");
-            },
-            showUserProfile: function(id) {
-                window.open("/profiles/" + id,"_self");
-            },
-            deleteComment: function(id) {
-                axios.post("/api/comments/destroy/" + id)
-                .then(response => {
-                    window.location.reload();
-                    this.comments.push(response.data);
-                    this.errorMessage = ""
-                    this.successMessage = "Comment Deleted Successfully"
-                })
-                .catch(error => {
-                    this.errorMessage = "Error : " + error.response.data.errors.contents[0];
-                    console.log(error);
-                })
-            }
         },
         mounted() {
             axios.post("{{ route ('api.comments.indexPost', ['id' => $post->id ]) }}", {
