@@ -163,10 +163,7 @@ class PostController extends Controller
             return response('Access denied : You cannot delete this post');
         }
         
-        //return response('Access approved : You can delete this post');
-        
-        //UNCOMMENT THESE
-        //$postForDeletion->delete();
+        $postForDeletion->delete();
         return redirect()->route('profiles.show', ['id' => \Auth::user()->id])->with('message', 'Post Deleted');
     }
 }

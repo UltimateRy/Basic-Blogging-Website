@@ -28,12 +28,10 @@
                         {{$post->contents}} </li>
                         @if(empty($image))
                         @else
-                        <img class="bd-placeholder-img" src="/images/postImages/{{$image->file_path}}" alt="{{ $image->file_path }}">
                         <br>
                         <br>
-                        <br>
+                        <img class="bd-placeholder-img max-h-80" src="/uploads/postImage/{{$image->file_path}}" alt="{{ $image->file_path }}">
                         @endif
-                        <br>
                     </div>
                 </div>
                 <br>
