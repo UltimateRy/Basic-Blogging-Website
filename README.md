@@ -1,7 +1,7 @@
 ## Project Description
 
 A basic social media type web app, developed using Laravel for my CS348 Web Apps module.
-This social media includes creating posts, uploading pictures, commenting on others post and some administrative options.
+This social media includes creating posts, uploading pictures, commenting on others post and some administrative options, including adding and removing users from the system.
 
 ## About Laravel
 
